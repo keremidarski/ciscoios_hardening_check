@@ -1,6 +1,6 @@
 # Cisco IOS Hardening Check
 
-This Python script, `cisco_ios_hardening_check.py`, parses a Cisco IOS configuration file and checks if the configuration aligns with the Cisco Guide to Harden Cisco IOS Devices.
+This Python script, `cisco_ios_hardening_check.py`, parses a Cisco IOS configuration file and checks if the configuration aligns with the [Cisco Guide to Harden Cisco IOS Devices](https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html).
 
 ## Dependencies
 
