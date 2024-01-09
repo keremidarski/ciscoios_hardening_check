@@ -19,7 +19,8 @@ The script checks the following aspects of a Cisco IOS configuration:
 - Packet Filtering: Checks for packet filtering settings.
 - CoPP: Checks whether Control Plane Policing (CoPP) is implemented.
 - IP Spoofing and Route Filtering: Checks for anti-spoofing features and route filtering settings.
-- Each of these checks contributes equally to the final score. If a check passes, it means the related aspect of the configuration adheres to the hardening guide. If a check fails, the script will provide a message with details about what needs to be corrected.
+
+Each of these checks contributes equally to the final score. If a check passes, it means the related aspect of the configuration adheres to the hardening guide. If a check fails, the script will provide a message with details about what needs to be corrected.
 
 ## Prerequisites
 
