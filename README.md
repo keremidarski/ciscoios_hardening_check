@@ -7,18 +7,18 @@ It provides a detailed report of the aspects of the configuration that do not ad
 ## What It Checks
 The script checks the following aspects of a Cisco IOS configuration:
 
-- Passwords and Privileges: Checks for secret password, password encryption, and minimum password length settings.
-- Router Identification: Checks for hostname, domain name, and login banner settings.
-- SNMP: Checks for SNMP community strings, SNMP access restrictions, and SNMP logging.
-- NTP: Checks for NTP server, NTP authentication, and timezone settings.
-- TCP and UDP Servers: Checks whether TCP and UDP small servers are disabled.
-- ICMP: Checks for ICMP echo ignore settings.
-- CDP: Checks whether CDP is disabled if not necessary.
-- Routing Protocol: Checks for routing update authentication.
-- Ports: Checks whether the Auxiliary port, Console port, and VTY lines are secured.
-- Packet Filtering: Checks for packet filtering settings.
-- CoPP: Checks whether Control Plane Policing (CoPP) is implemented.
-- IP Spoofing and Route Filtering: Checks for anti-spoofing features and route filtering settings.
+- **Passwords and Privileges**: Checks for secret password, password encryption, and minimum password length settings.
+- **Router Identification**: Checks for hostname, domain name, and login banner settings.
+- **SNMP**: Checks for SNMP community strings, SNMP access restrictions, and SNMP logging.
+- **NTP**: Checks for NTP server, NTP authentication, and timezone settings.
+- **TCP and UDP Servers**: Checks whether TCP and UDP small servers are disabled.
+- **CMP**: Checks for ICMP echo ignore settings.
+- **CDP**: Checks whether CDP is disabled if not necessary.
+- **Routing Protocol**: Checks for routing update authentication.
+- **Ports**: Checks whether the Auxiliary port, Console port, and VTY lines are secured.
+- **Packet Filtering**: Checks for packet filtering settings.
+- **CoPP**: Checks whether Control Plane Policing (CoPP) is implemented.
+- **IP Spoofing and Route Filtering**: Checks for anti-spoofing features and route filtering settings.
 
 Each of these checks contributes equally to the final score. If a check passes, it means the related aspect of the configuration adheres to the hardening guide. If a check fails, the script will provide a message with details about what needs to be corrected.
 
@@ -50,10 +50,10 @@ The script performs a total of 28 checks on the configuration file. Each check t
 1. The total number of checks is 28.
 2. The number of failed checks is calculated by summing the lengths of all the message values.
 3. The number of passed checks is then calculated by subtracting the number of failed checks from the total number of checks.
-4. Finally, the score is calculated by dividing the number of passed checks by the total number of checks, multiplying by 10, and rounding to 2 decimal places.
+4. Finally, the score is calculated by dividing the number of passed checks by the total number of checks, multiplying by 10, and rounding to two decimal places.
 
 A higher score indicates a better configuration. If all checks pass, the script will assign a score of 10/10.
 
 ## Disclaimer
 
-This script is just an idea and a proof of concept and it is not intended for use in a production environment. As of now it has a basic structure and doesn't cover all checks or possible configurations. The regular expressions used are fairly basic and may need to be refined to more accurately match the specific syntax used in your configuration files.
+This script is just an idea, a proof of concept and it is not intended for use in a production environment. As of now it has a basic structure and doesn't cover all checks or possible configurations. The regular expressions used are fairly basic and may need to be refined to more accurately match the specific syntax used in your configuration files.
