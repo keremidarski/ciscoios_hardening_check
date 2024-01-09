@@ -1,0 +1,30 @@
+!
+hostname Router
+!
+enable secret cisco
+service password-encryption
+security passwords min-length 10
+!
+banner login ^CUnauthorized access is prohibited.^C
+!
+snmp-server community public RO
+snmp-server host 192.0.2.1 version 2c public
+!
+no service tcp-small-servers
+no service udp-small-servers
+!
+no ip icmp echo-ignore
+!
+no cdp run
+!
+router rip
+version 2
+!
+line vty 0 4
+exec-timeout 0 0
+password 7 0822455D0A16
+login
+!
+access-list 10 permit 192.0.2.0 0.0.0.255
+!
+end
