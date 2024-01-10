@@ -56,4 +56,4 @@ A higher score indicates a better configuration. If all checks pass, the script 
 
 ## Disclaimer
 
-This script is just an idea, a proof of concept and it is not intended for use in a production environment. As of now it has a basic structure and doesn't cover all checks or possible configurations. The regular expressions used are fairly basic and may need to be refined to more accurately match the specific syntax used in your configuration files.
+As of now the script's structure doesn't cover all possible edge cases or configurations. The regular expressions used are fairly basic and may need to be refined to more accurately match the specific syntax used in your configuration files. This script is a proof of concept and it is not intended for use in a production environment. 
