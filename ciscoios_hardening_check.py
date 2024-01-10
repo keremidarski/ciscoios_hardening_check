@@ -12,7 +12,10 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-f", "--file", help="Path to the configuration file.", required=True
+        "-f",
+        "--file",
+        help="Path to the configuration file.",
+        required=True
     )
 
     return parser.parse_args()
@@ -97,13 +100,9 @@ def check_copp(parse, messages):
 
 def check_spoofing_route_filtering(parse, messages):
     if not parse.find_objects(r"^ip verify"):
-        messages["IP Spoofing and Route Filtering"].append(
-            "Anti-spoofing features not implemented"
-        )
+        messages["IP Spoofing and Route Filtering"].append("Anti-spoofing features not implemented")
     if not parse.find_objects(r"^ip route"):
-        messages["IP Spoofing and Route Filtering"].append(
-            "Route filtering not implemented"
-        )
+        messages["IP Spoofing and Route Filtering"].append("Route filtering not implemented")
 
 
 def check_config(file, messages):
@@ -132,13 +131,12 @@ def print_messages(messages):
         print("\nThe configuration file does not fully adhere to the hardening guide.")
         print("Here are some aspects of the configuration that are not hardened:")
     else:
-        print(
-            "\nThe configuration file fully adheres to the hardening guide. Good job!"
-        )
+        print("\nThe configuration file fully adheres to the hardening guide. Good job!")
 
     for category, msgs in messages.items():
         if msgs:
             print(f"\n{category}:")
+            
             for msg in msgs:
                 print(f"- {msg}")
 
@@ -156,6 +154,7 @@ def print_score(messages):
 def main():
     config_file = parse_args().file
     messages = defaultdict(list)
+    
     check_config(config_file, messages)
     print_messages(messages)
     print_score(messages)
