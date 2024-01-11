@@ -1,8 +1,6 @@
 # Cisco IOS Hardening Check
 
-This script parses a Cisco IOS configuration file and checks if the configuration aligns with the [Cisco Guide to Harden Cisco IOS Devices](https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html).
-
-It provides a detailed report of the aspects of the configuration that do not adhere to the guide, and assigns a score out of 10 based on the number of checks that pass.
+This script parses a Cisco IOS configuration file and checks if the configuration aligns with the [Cisco Guide to Harden Cisco IOS Devices](https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html) and then provides a detailed report of the aspects of the configuration that do not adhere to the guide, and assigns a score out of 10 based on the number of checks that pass.
 
 ## What It Checks
 The script checks the following aspects of a Cisco IOS configuration:
