@@ -7,9 +7,7 @@ from ciscoconfparse import CiscoConfParse
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Python script that parses a Cisco IOS configuration file and checks if the configuration aligns with the Cisco Guide to Harden Cisco IOS Devices."
-    )
+    parser = argparse.ArgumentParser(description="Python script that parses a Cisco IOS configuration file and checks if the configuration aligns with the Cisco Guide to Harden Cisco IOS Devices.")
 
     parser.add_argument(
         "-f",
