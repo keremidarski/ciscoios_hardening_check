@@ -1,0 +1,71 @@
+! Basic device information
+hostname CoreRouter
+!
+! Interface configurations
+interface GigabitEthernet0/0
+ description Internal LAN Interface
+ ip address 10.0.0.1 255.255.255.0
+!
+interface GigabitEthernet0/1
+ description Connection to Internet
+ ip address 203.0.113.2 255.255.255.252
+!
+interface Serial0/0/0
+ description Connection to Remote Office
+ ip address 192.168.10.1 255.255.255.252
+!
+! Routing configurations
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1
+ip route 192.168.20.0 255.255.255.0 192.168.10.2
+!
+! OSPF configuration
+router ospf 1
+ network 10.0.0.0 0.0.0.255 area 0
+ network 203.0.113.0 0.0.0.3 area 0
+ network 192.168.10.0 0.0.0.3 area 0
+!
+! DHCP configuration for LAN
+ip dhcp pool LAN-Pool
+ network 10.0.0.0 255.255.255.0
+ default-router 10.0.0.1
+ dns-server 8.8.8.8
+!
+! NAT configuration
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+!
+access-list 1 permit 10.0.0.0 0.0.0.255
+!
+! Virtual LAN (VLAN) configuration
+vlan 10
+ name Sales
+!
+vlan 20
+ name Engineering
+!
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 10.0.10.1 255.255.255.0
+!
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 10.0.20.1 255.255.255.0
+!
+! Security configurations
+username admin privilege 15 secret 0 your_secret_password
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+! Logging configuration
+logging buffered 8192 informational
+!
+! Time configuration
+clock timezone PST -8
+!
+! SNMP configuration
+snmp-server community private RW
+!
+! Banner configuration
+banner login ^CAuthorized access only. Disconnect immediately if you are not an authorized user!^C
+!
