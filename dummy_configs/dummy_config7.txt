@@ -1,0 +1,66 @@
+! Basic device information
+hostname SecurityRouter
+!
+! Interface configurations
+interface GigabitEthernet0/0
+ description Internal LAN Interface
+ ip address 192.168.1.1 255.255.255.0
+!
+interface GigabitEthernet0/1
+ description Connection to Internet
+ ip address dhcp
+ ip nat outside
+!
+! Virtual Private Network (VPN) configuration
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+ group 14
+!
+crypto isakmp key your_shared_key address 0.0.0.0
+!
+crypto ipsec transform-set VPN-Transform esp-aes esp-sha-hmac
+!
+crypto map VPN-Map 10 ipsec-isakmp
+ set peer 203.0.113.2
+ set transform-set VPN-Transform
+ match address 100
+!
+interface GigabitEthernet0/1
+ crypto map VPN-Map
+!
+access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+!
+! Routing configurations
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1
+!
+! DHCP configuration for LAN
+ip dhcp pool LAN-Pool
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 8.8.8.8
+!
+! NAT configuration
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+!
+access-list 1 permit 192.168.1.0 0.0.0.255
+!
+! Security configurations
+username admin privilege 15 secret 0 your_secret_password
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+! Logging configuration
+logging buffered 8192 informational
+!
+! Time configuration
+clock timezone PST -8
+!
+! SNMP configuration
+snmp-server community secret_string RO
+!
+! Banner configuration
+banner login ^CAuthorized access only. Disconnect immediately if you are not an authorized user!^C
+!
