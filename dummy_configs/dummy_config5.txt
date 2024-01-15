@@ -1,0 +1,45 @@
+! Basic device information
+hostname BranchRouter
+!
+! Interface configurations
+interface GigabitEthernet0/0
+ description LAN Interface
+ ip address 192.168.1.1 255.255.255.0
+!
+interface Serial0/0/0
+ description WAN Interface to ISP
+ ip address 203.0.113.1 255.255.255.252
+!
+! Routing configurations
+ip route 0.0.0.0 0.0.0.0 Serial0/0/0
+!
+! DHCP configuration for LAN
+ip dhcp pool LAN-Pool
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 8.8.8.8
+!
+! NAT configuration
+ip nat inside source list 1 interface Serial0/0/0 overload
+!
+access-list 1 permit 192.168.1.0 0.0.0.255
+!
+! Security configurations
+username admin privilege 15 secret 0 your_secret_password
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+! Logging configuration
+logging buffered 8192 informational
+!
+! Time configuration
+clock timezone PST -8
+!
+! SNMP configuration
+snmp-server community public RO
+!
+! Banner configuration
+banner login ^CAuthorized access only. Disconnect immediately if you are not an authorized user!^C
+!
